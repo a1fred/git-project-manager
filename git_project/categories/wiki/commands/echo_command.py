@@ -13,6 +13,6 @@ class Command(command.Command):
         titlestr = " ".join(kwargs['title'])
         article = wm.get_article(titlestr)
         if article:
-            print(article)
+            print("\n".join(article))
         else:
             print(f"Article {titlestr} not exists.")

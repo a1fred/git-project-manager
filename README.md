@@ -15,11 +15,18 @@ $ python3.7 setup.py install
 
 ## Sections
 ### Tickets
-Create new
-```bash
-$ git ticket --help
-```
+Project issues
+Create new `git ticket add `
+Create new `git ticket close `
+Create new `git ticket list `
+
+### Wiki
+Wiki pages, markdown.
+Create `git wiki create`
+Echo `git wiki echo`
+List `git wiki list`
+Open `git wiki open`
 
 
 #### Under-the-hood
-Tickets stored in `.gitproject/*`.
+Data stored in `.gitproject/*` in human-readable format.
