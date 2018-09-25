@@ -28,5 +28,5 @@ List `git wiki list`
 Open `git wiki open`   
 
 
-#### Under-the-hood
+## Under-the-hood
 Data stored in `.gitproject/*` in human-readable format.
