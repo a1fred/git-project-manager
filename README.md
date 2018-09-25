@@ -16,16 +16,16 @@ $ python3.7 setup.py install
 ## Sections
 ### Tickets
 Project issues
-Create new `git ticket add `
-Create new `git ticket close `
-Create new `git ticket list `
+Create new `git ticket add `  
+Create new `git ticket close `  
+Create new `git ticket list `   
 
 ### Wiki
 Wiki pages, markdown.
-Create `git wiki create`
-Echo `git wiki echo`
-List `git wiki list`
-Open `git wiki open`
+Create `git wiki create`  
+Echo `git wiki echo`  
+List `git wiki list`   
+Open `git wiki open`   
 
 
 #### Under-the-hood
