@@ -1,7 +1,7 @@
 import webbrowser
 
 from git_project.categories.abc import command
-from ..db import wm
+from ..db import get_wm
 
 
 class Command(command.Command):
@@ -12,6 +12,8 @@ class Command(command.Command):
         parser.add_argument("title", type=str, nargs="+")
 
     def handle(self, **kwargs):
+        wm = get_wm(self.settings)
+
         titlestr = " ".join(kwargs['title'])
         article = wm.get_article(titlestr)
         if article:

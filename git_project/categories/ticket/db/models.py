@@ -10,4 +10,7 @@ class Ticket:
     assignee: str = ''
 
     def __str__(self):
-        return f"[{self.status.upper()}] {self.assignee} #{self.id}: {self.title}"
+        if self.assignee:
+            return f"[{self.status.upper()}] #{self.id} [{self.assignee}]: {self.title}"
+        else:
+            return f"[{self.status.upper()}] #{self.id}: {self.title}"

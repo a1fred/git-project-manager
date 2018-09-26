@@ -1,5 +1,5 @@
 from git_project.categories.abc import command
-from ..db import wm
+from ..db import get_wm
 
 
 class Command(command.Command):
@@ -7,5 +7,6 @@ class Command(command.Command):
     help = ''
 
     def handle(self, **kwargs):
+        wm = get_wm(self.settings)
         for title in wm.get_articles():
             print(f" * {title}")

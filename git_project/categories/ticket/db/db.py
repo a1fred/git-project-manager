@@ -3,16 +3,16 @@ import configparser
 from dataclasses import asdict
 
 from git_project import constants
-from .utils import ensure_dir_exists
+from git_project.utils.shortcuts import ensure_dir_exists
 from .models import Ticket
 
 
 class DirDb:
-    def __init__(self, dbpath: str, prefix="GT") -> None:
+    def __init__(self, dbpath: str, prefix: str, issuesfilename: str) -> None:
         ensure_dir_exists(dbpath)
         self.dbpath = dbpath
         self.prefix = prefix
-        self.issuesfilepath = f"{dbpath}/{constants.ISSUES_FILE}"
+        self.issuesfilepath = f"{dbpath}/{issuesfilename}"
         self.config = configparser.ConfigParser()
         self.config.read(self.issuesfilepath)
 

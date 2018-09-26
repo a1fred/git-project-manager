@@ -1,21 +1,20 @@
 from typing import Iterable, Optional
 
 from .models import Ticket
-from .utils import attrEqual
+from git_project.utils.shortcuts import attrEqual
 from .db import DirDb
 from git_project import constants
 
-
-__all__ = ['tm', 'models']
+__all__ = ['get_tm', 'models']
 
 
 class TicketsManager:
-    def __init__(self, dbpath: str) -> None:
-        self.db = DirDb(dbpath)
+    def __init__(self, dbpath: str, prefix=str, issuesfilename=str) -> None:
+        self.db = DirDb(dbpath, prefix=prefix, issuesfilename=issuesfilename)
 
-    def add(self, title: str, status="open") -> Ticket:
+    def add(self, title: str, status="open", assignee='') -> Ticket:
         ticket = self.db.insert_ticket(
-            Ticket(title=title, status=status)
+            Ticket(title=title, status=status, assignee=assignee)
         )
         assert ticket.id
         return ticket
@@ -35,4 +34,5 @@ class TicketsManager:
         return ticket
 
 
-tm = TicketsManager(constants.PROJECT_DIR)
+def get_tm(settings) -> TicketsManager:
+    return TicketsManager(constants.PROJECT_DIR, prefix=settings.ticket_prefix, issuesfilename=settings.issues_file)

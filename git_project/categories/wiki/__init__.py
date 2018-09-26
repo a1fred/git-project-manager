@@ -1,4 +1,4 @@
-from ..abc import category
+from ..abc import category, settings
 from .commands import (
     list_command,
     create_command,
@@ -11,13 +11,19 @@ Wiki module
 """
 
 
+class CategorySettings(settings.Settings):
+    workdir = 'wiki'
+
+
 class Category(category.Category):
     name = 'wiki'
     help = 'Wiki manager'
+    settings = CategorySettings()
 
-    commands = [
-        list_command.Command(),
-        create_command.Command(),
-        open_command.Command(),
-        echo_command.Command(),
-    ]
+    def get_commands(self):
+        return [
+            list_command.Command(self),
+            create_command.Command(self),
+            open_command.Command(self),
+            echo_command.Command(self),
+        ]

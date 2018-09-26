@@ -2,10 +2,10 @@ class Command:
     command: str
     help: str
 
-    def add_arguments(self, parser):
-        pass
+    def __init__(self, category):
+        self.category = category
 
-    def __init__(self):
+    def add_arguments(self, parser):
         pass
 
     def handle(self, **kwargs):

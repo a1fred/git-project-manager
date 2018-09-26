@@ -2,12 +2,12 @@ from typing import Optional, Tuple, List
 import os
 
 from git_project import constants
-from git_project.categories.ticket.db.utils import ensure_dir_exists
+from git_project.utils.shortcuts import ensure_dir_exists
 
 
 class WikiManager:
-    def __init__(self):
-        self.wiki_path = f"{constants.PROJECT_DIR}/{constants.WIKI_DIR}"
+    def __init__(self, workdir: str) -> None:
+        self.wiki_path = f"{constants.PROJECT_DIR}/{workdir}"
         ensure_dir_exists(self.wiki_path)
 
     def _getfpath(self, title: str) -> str:
@@ -32,4 +32,5 @@ class WikiManager:
         return res
 
 
-wm = WikiManager()
+def get_wm(settings):
+    return WikiManager(settings.workdir)
