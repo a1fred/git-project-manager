@@ -1,10 +1,7 @@
 from typing import List
 
-from . import ticket, wiki
+from . import ticket, wiki, webui
 from .abc.category import Category
 
-
-CATEGORIES: List[Category] = [
-    ticket.Category(),
-    wiki.Category(),
-]
+category_classes = [ticket.Category, wiki.Category, webui.Category]
+CATEGORIES: List[Category] = [x() for x in category_classes if x.supported()]

@@ -10,7 +10,7 @@ class Command(command.Command):
         parser.add_argument("title", type=str, nargs="+")
 
     def handle(self, **kwargs):
-        wm = get_wm(self.settings)
+        wm = get_wm(self.category.settings)
 
         titlestr = " ".join(kwargs['title'])
         article = wm.get_article(titlestr)

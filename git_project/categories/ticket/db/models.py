@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from git_project.utils.colors import C
+
 
 @dataclass
 class Ticket:
@@ -10,7 +12,16 @@ class Ticket:
     assignee: str = ''
 
     def __str__(self):
+        fields = [
+            f"{C.HEADER}[{self.status.upper()}]{C.ENDC}",
+            f"{C.WARNING}#{self.id}{C.ENDC}",
+        ]
+
         if self.assignee:
-            return f"[{self.status.upper()}] #{self.id} [{self.assignee}]: {self.title}"
+            fields.append(f"{C.OKGREEN}[{self.assignee}]{C.ENDC}:")
         else:
-            return f"[{self.status.upper()}] #{self.id}: {self.title}"
+            fields.append("\b:")
+
+        fields.append(f"{self.title}")
+
+        return " ".join(fields)

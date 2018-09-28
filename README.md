@@ -1,4 +1,4 @@
-# Git project manager
+# [WIP] Git project manager
 Git project manager with in-repository data storage.
 
 ## Features

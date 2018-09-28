@@ -7,6 +7,6 @@ class Command(command.Command):
     help = ''
 
     def handle(self, **kwargs):
-        wm = get_wm(self.settings)
+        wm = get_wm(self.category.settings)
         for title in wm.get_articles():
             print(f" * {title}")

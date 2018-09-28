@@ -13,6 +13,10 @@ class Category:
     def get_commands(self) -> List[Command]:
         raise NotImplementedError
 
+    @classmethod
+    def supported(self) -> bool:
+        return True
+
     def handle_command(self, command: str, **kwargs):
         for c in self.commands:
             if c.command == command:

@@ -1,6 +1,8 @@
 from git_project.categories.abc import command
-from ..db import get_tm
 from git_project.utils.githelpers import get_git_user
+from git_project.utils.colors import C
+
+from ..db import get_tm
 
 
 class Command(command.Command):
@@ -17,8 +19,7 @@ class Command(command.Command):
         ticket = tm.get_ticket_by_id(tid)
         if ticket:
             my_user = get_git_user()
-            print(my_user)
             t = tm.update(ticket, assignee=my_user)
             print(t)
         else:
-            print(f"Ticket {tid} not found")
+            print(f"{C.FAIL}Ticket {C.WARNING}#{tid}{C.ENDC}{C.FAIL} not found{C.ENDC}")

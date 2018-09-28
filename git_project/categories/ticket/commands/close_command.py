@@ -1,4 +1,6 @@
 from git_project.categories.abc import command
+from git_project.utils.colors import C
+
 from ..db import get_tm
 
 
@@ -16,15 +18,15 @@ class Command(command.Command):
         for tid in kwargs['tids']:
             ticket = tm.get_ticket_by_id(tid)
             if ticket:
-                if ticket.status != self.category.status_closed:
-                    t = tm.update(ticket, status=self.category.status_closed)
+                if ticket.status != self.category.settings.status_closed:
+                    t = tm.update(ticket, status=self.category.settings.status_closed)
                     updated.append(t)
                 else:
-                    print(f"Ticket {tid} already closed")
+                    print(f"{C.FAIL}Ticket {C.WARNING}#{tid}{C.ENDC}{C.FAIL} already closed{C.ENDC}")
             else:
-                print(f"Ticket {tid} not found")
+                print(f"{C.FAIL}Ticket {C.WARNING}#{tid}{C.ENDC}{C.FAIL} not found{C.ENDC}")
 
         if updated:
-            print("Ticket updated:")
+            print(f"{C.OKBLUE}Ticket updated:{C.ENDC}")
             for t in updated:
                 print(f" - {t}")

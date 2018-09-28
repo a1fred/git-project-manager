@@ -1,6 +1,8 @@
 from git_project.categories.abc import command
-from ..db import get_tm
+from git_project.utils.colors import C
 from git_project.utils.githelpers import get_git_user
+
+from ..db import get_tm
 
 
 class Command(command.Command):
@@ -25,5 +27,5 @@ class Command(command.Command):
             assignee = get_git_user()
 
         t = tm.add(title=titlestr, assignee=assignee, status=kwargs['status'])
-        print("New ticket added:")
+        print(f"{C.OKBLUE}New ticket added:{C.ENDC}")
         print(f" - {t}")
